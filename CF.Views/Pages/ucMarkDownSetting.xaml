@@ -1,0 +1,446 @@
+﻿<UserControl x:Class="CF.Views.Pages.ucMarkDownSetting"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CF.Views.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="../../Resources/Styles/resMDMColors.xaml"/>-->
+                <ResourceDictionary Source="../Resources/Styles/resCFStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Margin="5">
+                <Border.Style>
+                    <Style TargetType='Border'>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                </Border.Style>
+                <Grid Grid.Row="0" Margin="10,0,10,0">
+                    <Grid.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource baseStyle_Button}">
+                            <Setter Property="Margin" Value="3"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontSize" Value="10"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Button x:Name="btn_MDOpen" Content="OPEN" Click="btn_MDOpen_Click"/>
+                        <Button x:Name="btn_MDLoad" Content="LOAD" Click="btn_MDLoad_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Margin="5">
+                <Border.Style>
+                    <Style TargetType='Border'>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                </Border.Style>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition MaxWidth="5"/>
+                        <ColumnDefinition Width="0"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Margin="10,10,5,10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="Gray">
+                                <Grid>
+                                    <TextBlock Text="Origin Markdown" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13" Foreground="White" FontWeight="Bold" Margin="10,5,10,5"/>
+                                </Grid>
+                            </Border>
+
+                            <DataGrid Grid.Row="1" x:Name="datagrid_OriginMD">
+                                <DataGrid.Style>
+                                    <Style TargetType="DataGrid">
+                                        <Setter Property="AreRowDetailsFrozen" Value="False"/>
+                                        <Setter Property="AutoGenerateColumns" Value="False"/>
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="CanUserAddRows" Value="False"/>
+                                        <Setter Property="CanUserDeleteRows" Value="False"/>
+                                        <Setter Property="CanUserReorderColumns" Value="False"/>
+                                        <Setter Property="CanUserResizeColumns" Value="False"/>
+                                        <Setter Property="CanUserResizeRows" Value="False"/>
+                                        <Setter Property="CanUserSortColumns" Value="False"/>
+                                        <Setter Property="HeadersVisibility" Value="None"/>
+                                        <Setter Property="FontSize" Value="10"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+                                        <Setter Property="HorizontalGridLinesBrush" Value="#efefef"/>
+                                        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+                                        <Setter Property="IsReadOnly" Value="True"/>
+                                        <Setter Property="SelectionMode" Value="Single"/>
+                                        <Setter Property="SelectionUnit" Value="Cell"/>
+                                        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+                                        <Setter Property="MinRowHeight" Value="30"/>
+                                        <Setter Property="FrozenColumnCount" Value="1"/>
+                                    </Style>
+                                </DataGrid.Style>
+                                <DataGrid.Resources>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                    <Style TargetType="DataGridRow">
+                                        <Setter Property="Visibility" Value="{Binding RowVisibility}"/>
+                                    </Style>
+
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn x:Name="col_lineNum" Width="auto" MinWidth="30">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border Background="#efefef" BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <ContentPresenter Content="{Binding Display_LineNum}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3,0,3,0"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn x:Name="col_lineContent" >
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border Background="White">
+                                                    <ContentPresenter Content="{Binding Display_LineValue}" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                                        <ContentPresenter.Resources>
+                                                            <Style TargetType="StackPanel">
+                                                                <Setter Property="Margin" Value="0,0,5,0"/>
+                                                            </Style>
+                                                            <Style TargetType="Border">
+                                                                <Setter Property="Width" Value="{Binding ActualHeight, RelativeSource={RelativeSource Mode=Self}}"/>
+                                                                <Setter Property="BorderBrush" Value="#e9e9e9"/>
+                                                                <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                                                                <Setter Property="Margin" Value="0,-8,0,-8"/>
+                                                            </Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Foreground" Value="Black"/>
+                                                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                                                <Setter Property="Margin" Value="5,0,5,0"/>
+                                                            </Style>
+                                                        </ContentPresenter.Resources>
+                                                    </ContentPresenter>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+                            <Border Grid.Row="2" CornerRadius="0,0,5,5" Background="#e9e9e9" BorderBrush="Gray" BorderThickness="0.5">
+                                <Grid Margin="5">
+                                    <Grid.Resources>
+                                        <Style TargetType="ToggleButton" BasedOn="{StaticResource baseStyle_Toggle}">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="BorderBrush" Value="LightGray"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Setter Property="Foreground" Value="LightGray"/>
+                                            <Style.Triggers>
+
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Foreground" Value="Gray"/>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                    <Setter Property="BorderBrush" Value="Gray"/>
+                                                </Trigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="Background" Value="DarkSlateGray"/>
+                                                    <Setter Property="Foreground" Value="Gold"/>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                        <ToggleButton x:Name="toggle_EmptyCollapse" Content="빈 값 접기" Checked="toggle_EmptyCollapse_Checked" Unchecked="toggle_EmptyCollapse_Checked"/>
+                                        <ToggleButton x:Name="toggle_IndentOnOff" Content="들여쓰기" Checked="toggle_IndentOnOff_Checked" Unchecked="toggle_IndentOnOff_Checked"/>
+                                    </StackPanel>
+                                </Grid>
+
+                            </Border>
+
+
+                        </Grid>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="5" VerticalAlignment="Center" >
+                        <StackPanel.Resources>
+                            <Style TargetType="Button" BasedOn="{StaticResource baseStyle_Button}">
+                                <Setter Property="Height" Value="50"/>
+                                <Setter Property="MinWidth" Value="0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Button x:Name="btn_MarkdownModeling" Content="▶" Click="btn_MarkdownModeling_Click"/>
+                    </StackPanel>
+                    <Border Grid.Column="2" Margin="5,10,5,10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="DarkSlateGray">
+                                <Grid>
+                                    <TextBlock Text="Contents Table" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13" Foreground="White" FontWeight="Bold" Margin="10,5,10,5"/>
+                                </Grid>
+                            </Border>
+                            <DataGrid Grid.Row="1" x:Name="datagrid_TableMarkdown">
+                                <DataGrid.Style>
+                                    <Style TargetType="DataGrid">
+                                        <Setter Property="AreRowDetailsFrozen" Value="False"/>
+                                        <Setter Property="AutoGenerateColumns" Value="False"/>
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="CanUserAddRows" Value="False"/>
+                                        <Setter Property="CanUserDeleteRows" Value="False"/>
+                                        <Setter Property="CanUserReorderColumns" Value="False"/>
+                                        <Setter Property="CanUserResizeColumns" Value="False"/>
+                                        <Setter Property="CanUserResizeRows" Value="False"/>
+                                        <Setter Property="CanUserSortColumns" Value="False"/>
+                                        <Setter Property="HeadersVisibility" Value="Column"/>
+                                        <Setter Property="FontSize" Value="10"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+                                        <Setter Property="HorizontalGridLinesBrush" Value="#efefef"/>
+                                        <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+                                        <Setter Property="ColumnHeaderHeight" Value="35"/>
+                                        <Setter Property="IsReadOnly" Value="True"/>
+                                        <Setter Property="SelectionMode" Value="Single"/>
+                                        <Setter Property="SelectionUnit" Value="Cell"/>
+                                        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+                                        <Setter Property="MinRowHeight" Value="30"/>
+                                    </Style>
+                                </DataGrid.Style>
+                                <DataGrid.Resources>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                    </Style>
+                                    <Style TargetType="DataGridRow">
+                                    </Style>
+                                    <Style TargetType="DataGridColumnHeader">
+
+
+                                    </Style>
+                                    <Style x:Key="style_Header_Textblock"  TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                    </Style>
+
+                                    <Style x:Key="style_HeaderBorder_border" TargetType="Border">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                                        <Setter Property="Background" Value="Navy"/>
+                                        <Setter Property="BorderBrush" Value="#e9e9e9"/>
+                                    </Style>
+                                    <Style x:Key="style_CellValue_Textblock" TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Left"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                        <Setter Property="Margin" Value="5,0,5,0"/>
+                                        <Setter Property="ToolTip" Value="{Binding Text, RelativeSource={RelativeSource Mode=Self}}"/>
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </Style>
+                                </DataGrid.Resources>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Lv1" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Heading1}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Lv2" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Heading2}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Lv3" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Heading3}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Lv4" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Heading4}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Lv5" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Heading5}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Lv6" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Heading6}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn  Width="auto" MinWidth="100">
+                                        <DataGridTemplateColumn.Header>
+                                            <Border Style="{StaticResource style_HeaderBorder_border}">
+                                                <TextBlock Text="Content" Style="{StaticResource style_Header_Textblock}"/>
+                                            </Border>
+                                        </DataGridTemplateColumn.Header>
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border  BorderBrush="#e9e9e9" BorderThickness="0,0,0,1">
+                                                    <TextBlock Text="{Binding Display_Content}" Style="{StaticResource style_CellValue_Textblock}"/>
+                                                </Border>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+
+
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="4" Margin="5,10,10,10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="SlateGray">
+                                <Grid>
+                                    <TextBlock Text="Control Panel" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13" Foreground="White" FontWeight="Bold" Margin="10,5,10,5"/>
+                                </Grid>
+                            </Border>
+
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+
+
+
+
+
+        </Grid>
+
+    </Grid>
+</UserControl>

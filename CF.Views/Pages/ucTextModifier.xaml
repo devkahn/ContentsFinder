@@ -1,0 +1,246 @@
+﻿<UserControl x:Class="CF.Views.Pages.ucTextModifier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CF.Views.Pages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="../../Resources/Styles/resMDMColors.xaml"/>-->
+                <ResourceDictionary Source="../Resources/Styles/resCFStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Margin="5">
+                <Border.Style>
+                    <Style TargetType='Border'>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                </Border.Style>
+                <Grid Grid.Row="0" Margin="10,0,10,0">
+                    <Grid.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource baseStyle_Button}">
+                            <Setter Property="Margin" Value="3"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="FontSize" Value="10"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Button x:Name="btn_textLoad" Content="JSON LOAD" Click="btn_textLoad_Click"/>
+                        <Button x:Name="btn_textSave" Content="JSON Save" Click="btn_textSave_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Margin="5">
+                <Border.Style>
+                    <Style TargetType='Border'>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="CornerRadius" Value="10"/>
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                </Border.Style>
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition MaxWidth="5"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Margin="10,10,5,10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="Gray">
+                                <Grid>
+                                    <TextBlock Text="Slide Index" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13" Foreground="White" FontWeight="Bold" Margin="10,5,10,5"/>
+                                </Grid>
+                            </Border>
+
+                            <ListBox Grid.Row="1" x:Name="listbox_slidelist" ItemsSource="{Binding Slides}"
+                                  SelectionChanged="listbox_slidelist_SelectionChanged">
+                                <ListBox.Style>
+                                    <Style TargetType="ListBox">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="DisplayMemberPath" Value="Display_Name"/>
+
+                                    </Style>
+                                </ListBox.Style>
+                                <ListBox.Resources>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="Height" Value="30"/>
+                                    </Style>
+
+                                </ListBox.Resources>
+
+                            </ListBox>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" Margin="5,10,5,10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="DarkSlateGray">
+                                <Grid>
+                                    <TextBlock Text="Contained Text" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13" Foreground="White" FontWeight="Bold" Margin="10,5,10,5"/>
+                                </Grid>
+                            </Border>
+                            <ListBox Grid.Row="1" x:Name="listbox_textList">
+                                <ListBox.Style>
+                                    <Style TargetType="ListBox">
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="DisplayMemberPath" Value="Display_Value"/>
+
+                                    </Style>
+                                </ListBox.Style>
+                                <ListBox.Resources>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="MinHeight" Value="30"/>
+                                        <Setter Property="BorderBrush" Value="LightGray"/>
+                                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                        <Setter Property="Margin" Value="5"/>
+                                    </Style>
+
+                                </ListBox.Resources>
+
+                            </ListBox>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="3" Margin="5,10,10,10">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Border.Style>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="0" CornerRadius="5,5,0,0" Background="SlateGray">
+                                <Grid>
+                                    <TextBlock Text="Control Panel" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="13" Foreground="White" FontWeight="Bold" Margin="10,5,10,5"/>
+                                </Grid>
+                            </Border>
+                            <StackPanel Grid.Row="1" Margin="5">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button" BasedOn="{StaticResource baseStyle_Button}">
+                                        <Setter Property="Margin" Value="5,0,5,0"/>
+                                    </Style>
+                                    <Style x:Key ="style_txtblock_title" TargetType="TextBlock">
+                                        <Setter Property="Margin" Value="5"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="FontSize" Value="14"/>
+
+                                    </Style>
+                                </StackPanel.Resources>
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="슬라이드 객체 컨트롤" Style="{StaticResource style_txtblock_title}"/>
+                                    <WrapPanel Orientation="Horizontal">
+                                        <Button x:Name="bnt_RemoveNoText" Content="비어있는 슬라이드 삭제" Click="bnt_RemoveNoText_Click"/>
+                                        <Button x:Name="bnt_RemoveSelectSlide" Content="선택 슬라이드 삭제" Click="bnt_RemoveSelectSlide_Click"/>
+                                    </WrapPanel>
+                                </StackPanel>
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="텍스트 객체 컨트롤" Style="{StaticResource style_txtblock_title}"/>
+                                    <WrapPanel Orientation="Horizontal">
+                                        <Button x:Name="bnt_RemoveNoOutText" Content="마지막 경고 문구 제거" Click="bnt_RemoveNoOutText_Click"/>
+                                        <Button x:Name="bnt_LastPageNum" Content="마지막 페이지 넘버 제거" Click="bnt_LastPageNum_Click"/>
+                                    </WrapPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <TextBox x:Name="txtbox_RemovalText"  Width="150"/>
+                                        <Button x:Name="bnt_RemoveTitleText" Content="해당 문구 제외" Click="bnt_RemoveTitleText_Click"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                                            <StackPanel.Resources>
+                                                <Style TargetType="RadioButton">
+                                                    <Setter Property="Margin" Value="0,0,5,0"/>
+                                                </Style>
+                                            </StackPanel.Resources>
+                                            <RadioButton GroupName="removeText" Content="전체" IsChecked="True"/>
+                                            <RadioButton GroupName="removeText" Content="선택 객체" />
+                                            <RadioButton GroupName="removeText" Content="첫 아이템" />
+                                            <RadioButton GroupName="removeText" Content="마지막 아이템" />
+                                        </StackPanel>
+                                        <TextBox x:Name="txtbox_OriginText"  Width="150"/>
+                                        <TextBlock Text="→" FontWeight="Bold" Margin="5,0,5,0"/>
+                                        <TextBox x:Name="txtbox_TargetText"  Width="150"/>
+                                        <Button x:Name="bnt_ChangeText" Content="문구 변경" Click="bnt_ChangeText_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="5">
+                                    <TextBlock Text="선택한 텍스트 객체 컨트롤" Style="{StaticResource style_txtblock_title}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBox x:Name="txtbox_TextitemIndex" Width="50" Text="0"/>
+                                            </StackPanel>
+                                            <Button x:Name="bnt_DivideLine" Content="Title 나누기" Click="bnt_DivideLine_Click"/>
+                                            <Button x:Name="bnt_RemoveOneChar" Content="맨 앞에 _(언더바)지우기" Click="bnt_RemoveOneChar_Click"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <!--<ResourceDictionary Source="resCFColors.xaml"/>-->
+
+
+        <!--<ResourceDictionary Source="resCFStyle_Border.xaml"/>-->
+        <ResourceDictionary Source="resCFStyle_Button.xaml"/>
+        <!--<ResourceDictionary Source="resCFStyle_Datagrid.xaml"/>-->
+        <!--<ResourceDictionary Source="resCFStyle_Listbox.xaml"/>-->
+        <ResourceDictionary Source="resCFStyle_RadioButton.xaml"/>
+        <!--<ResourceDictionary Source="resCFStyle_ScrollViewer.xaml"/>-->
+        <!--<ResourceDictionary Source="resCFStyle_StackPanel.xaml"/>-->
+        <!--<ResourceDictionary Source="resCFStyle_Textblock.xaml"/>-->
+        <!--<ResourceDictionary Source="resCFStyle_Textbox.xaml"/>-->
+        <ResourceDictionary Source="resCFStyle_ToggleButton.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

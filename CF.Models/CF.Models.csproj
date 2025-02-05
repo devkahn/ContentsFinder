@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A9942D0-58AD-4468-BFFA-40454FDFB132}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CF.Models</RootNamespace>
+    <AssemblyName>CF.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModels\ChunkData\mChunk.cs" />
+    <Compile Include="DataModels\ChunkData\mChunkData.cs" />
+    <Compile Include="DataModels\ChunkData\mChunkImage.cs" />
+    <Compile Include="DataModels\Markdown\mMarkdown.cs" />
+    <Compile Include="DataModels\Markdown\mMarkdownContent.cs" />
+    <Compile Include="DataModels\Markdown\mMarkdownLine.cs" />
+    <Compile Include="DataModels\mBase.cs" />
+    <Compile Include="DataModels\mMaterial.cs" />
+    <Compile Include="DataModels\Powerpoint\mPowerpoint.cs" />
+    <Compile Include="DataModels\Powerpoint\mShape.cs" />
+    <Compile Include="DataModels\Powerpoint\mSlide.cs" />
+    <Compile Include="DataModels\Powerpoint\mTextShape.cs" />
+    <Compile Include="Interfaces\iViewmodel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ChunkDataSetting\vmChunk.cs" />
+    <Compile Include="ViewModels\ChunkDataSetting\vmChunkData.cs" />
+    <Compile Include="ViewModels\ChunkDataSetting\vmChunkImage.cs" />
+    <Compile Include="ViewModels\MarkDownSetting\vmMarkdown.cs" />
+    <Compile Include="ViewModels\MarkDownSetting\vmMarkdownContent.cs" />
+    <Compile Include="ViewModels\MarkDownSetting\vmMarkdownHeading.cs" />
+    <Compile Include="ViewModels\MarkDownSetting\vmMarkdownLine.cs" />
+    <Compile Include="ViewModels\PowerPointSetting\vmPowerpoint.cs" />
+    <Compile Include="ViewModels\PowerPointSetting\vmSlide.cs" />
+    <Compile Include="ViewModels\PowerPointSetting\vmTextShape.cs" />
+    <Compile Include="ViewModels\vmBase.cs" />
+    <Compile Include="ViewModels\vmMaterials.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CF.Commons\CF.Commons.csproj">
+      <Project>{19566A48-0D82-4D66-B5D4-401BBEA3DAB7}</Project>
+      <Name>CF.Commons</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
